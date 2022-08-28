@@ -1111,6 +1111,7 @@
     <ClCompile Include="..\src\boards\bs4xxxr.cpp">
       <Filter>boards</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\enio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\drivers\common\args.h">
@@ -1619,6 +1620,9 @@
     </ClInclude>
     <ClInclude Include="..\src\drivers\win\header_editor.h">
       <Filter>drivers\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\enio.h">
+      <Filter>include files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

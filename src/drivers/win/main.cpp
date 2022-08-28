@@ -78,6 +78,7 @@ extern "C" { FILE __iob_func[3] = { *stdin,*stdout,*stderr }; }
 #include <string.h>
 #include "taseditor.h"
 #include "taseditor/taseditor_window.h"
+#include "enio.h"
 
 extern TASEDITOR_WINDOW taseditorWindow;
 extern bool taseditorEnableAcceleratorKeys;
@@ -220,6 +221,7 @@ int BotFramesSkipped = 0;
 bool SingleInstanceOnly=false; // Enable/disable option
 bool DoInstantiatedExit=false;
 HWND DoInstantiatedExitWindow;
+ENIOModule MyENIO;
 
 // Internal functions
 void SetDirs()
@@ -923,11 +925,15 @@ doloopy:
 	UpdateFCEUWindow();
 	if(GameInfo)
 	{
+		MyENIO.Init(&MyENIO);
+
 		while(GameInfo)
 		{
 	        uint8 *gfx=0; ///contains framebuffer
 			int32 *sound=0; ///contains sound data buffer
 			int32 ssize=0; ///contains sound samples count
+
+			MyENIO.MainLoop(&MyENIO);
 
 			if (turbo)
 			{

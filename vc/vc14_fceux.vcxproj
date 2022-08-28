@@ -704,6 +704,7 @@ xcopy /y /d "$(ProjectDir)\..\src\drivers\win\7z_64.dll" "$(OutDir)"</Command>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='PublicRelease|Win32'">CompileAsC</CompileAs>
     </ClCompile>
     <ClCompile Include="..\src\emufile.cpp" />
+    <ClCompile Include="..\src\enio.cpp" />
     <ClCompile Include="..\src\input\arkanoid.cpp" />
     <ClCompile Include="..\src\input\bworld.cpp">
       <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4789</DisableSpecificWarnings>
@@ -1099,6 +1100,7 @@ xcopy /y /d "$(ProjectDir)\..\src\drivers\win\7z_64.dll" "$(OutDir)"</Command>
     <ClInclude Include="..\src\drivers\win\lua\include\lualib.h" />
     <ClInclude Include="..\src\emufile.h" />
     <ClInclude Include="..\src\emufile_types.h" />
+    <ClInclude Include="..\src\enio.h" />
     <ClInclude Include="..\src\fceu.h" />
     <ClInclude Include="..\src\fceulua.h" />
     <ClInclude Include="..\src\fcoeffs.h" />
