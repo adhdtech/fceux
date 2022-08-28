@@ -223,6 +223,18 @@ bool DoInstantiatedExit=false;
 HWND DoInstantiatedExitWindow;
 ENIOModule MyENIO;
 
+static DECLFR(ENIONESGetByte)
+{
+	// ENIO NES Read ISR
+	return MyENIO.NESGetByte(&MyENIO);
+}
+
+static DECLFW(ENIONESPutByte)
+{
+	// ENIO NES Write ISR
+	MyENIO.NESPutByte(&MyENIO, V);
+}
+
 // Internal functions
 void SetDirs()
 {
@@ -926,6 +938,10 @@ doloopy:
 	if(GameInfo)
 	{
 		MyENIO.Init(&MyENIO);
+
+		// Set Memory Handlers
+		SetReadHandler(0x4700, 0x47FF, ENIONESGetByte);
+		SetWriteHandler(0x4700, 0x47FF, ENIONESPutByte);
 
 		while(GameInfo)
 		{

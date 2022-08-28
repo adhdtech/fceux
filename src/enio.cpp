@@ -371,7 +371,7 @@ void ENIOModule::ProcessCGPCmd (ENIOModule* ENIO, uint8 ChannelID) {
             break;
 
         case Control:
-	    ENIO->Channels[TargetChan].chanCmd = CmdChan->chanCmdData[1];
+	        ENIO->Channels[TargetChan].chanCmd = CmdChan->chanCmdData[1];
             ENIO->Channels[TargetChan].chanCmdDataCount = CmdChan->chanCmdDataCount - 2;
             for (i=2; i<(CmdChan->chanCmdDataCount); i++) {
                 ENIO->Channels[TargetChan].chanCmdData[i-2] = CmdChan->chanCmdData[i];
@@ -672,6 +672,7 @@ void ENIOModule::ProcessNetworkChannels (ENIOModule* ENIO) {
 			*/
 
         case CmdOpenSocket:
+          printf("Received command to open socket...\n");
 		  NetDataChan = &ENIO->Channels[NetCtrlChan->chanCmdData[0]];
 		  NetDataChan->chanType = NetworkChannel;
           if (NetCtrlChan->chanCmdData[1]) {
@@ -711,7 +712,7 @@ void ENIOModule::ProcessNetworkChannels (ENIOModule* ENIO) {
 	  }
 
 	  if (CmdType) {
-//printf("\t\t<ENIO> Enqueueing %d bytes to Channel %d, CmdType = 0x%02x, CmdDataOut[0] = 0x%02x...\n", CmdSize, 5, CmdType, CmdDataOut[0]);
+            printf("\t\t<ENIO> Enqueueing %d bytes to Channel %d, CmdType = 0x%02x, CmdDataOut[0] = 0x%02x...\n", CmdSize, 5, CmdType, CmdDataOut[0]);
             ENIO->PutCGPCmd (ENIO, NetCtrlChanID, CmdSize, CmdType, CmdDataOut);
             NetCtrlChan->chanCmd = 0;
       }
@@ -937,9 +938,9 @@ void ENIOModule::Init(ENIOModule* ENIO)
     CurChan = &Channels[CmdChan];
 
     printf("Allocating queue space for Cmd channel %d...\n", CmdChan);
-	printf("\n\t\t\tInit1  Que 0x%08x",CurChan->queOut);
+	printf("\t\t\tInit1  Que 0x%08x\n",CurChan->queOut);
     CircularBufferInit(&CurChan->queOut, 1024);
-	printf("\n\t\t\tInit2  Que 0x%08x",CurChan->queOut);
+	printf("\t\t\tInit2  Que 0x%08x\n",CurChan->queOut);
     CurChan->queOutInit = 1;
 
 	CurChan = &Channels[NetCtrlChan];
